@@ -20,6 +20,7 @@ public interface Hello {
     void onScreenStarted();
     void setToolbarVisibility(boolean visible);
     void setTextVisibility(boolean visible);
+    void setPBVisibility(boolean visible);
   }
 
   interface HelloTo {
@@ -27,6 +28,7 @@ public interface Hello {
     void destroyView();
     boolean isToolbarVisible();
     boolean isTextVisible();
+    boolean isPBVisible();
   }
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -36,7 +38,8 @@ public interface Hello {
    * Methods offered to VIEW to communicate with PRESENTER
    */
   interface ViewToPresenter extends Presenter<PresenterToView> {
-    void onButtonClicked();
+    void onButtonSayClicked();
+    void onButtonGoToClicked();
   }
 
   /**
@@ -49,6 +52,8 @@ public interface Hello {
     void showText();
     void setText(String txt);
     void setLabel(String txt);
+    void showPB();
+    void hidePB();
   }
 
   /**

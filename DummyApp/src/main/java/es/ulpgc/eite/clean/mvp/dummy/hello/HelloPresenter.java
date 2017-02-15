@@ -7,7 +7,9 @@ import android.util.Log;
 import es.ulpgc.eite.clean.mvp.ContextView;
 import es.ulpgc.eite.clean.mvp.GenericActivity;
 import es.ulpgc.eite.clean.mvp.GenericPresenter;
+import es.ulpgc.eite.clean.mvp.dummy.app.App;
 import es.ulpgc.eite.clean.mvp.dummy.app.Mediator;
+
 
 public class HelloPresenter extends GenericPresenter
     <Hello.PresenterToView, Hello.PresenterToModel, Hello.ModelToPresenter, es.ulpgc.eite.clean.mvp.dummy.hello.HelloModel>
@@ -15,8 +17,10 @@ public class HelloPresenter extends GenericPresenter
 
 
   private boolean toolbarVisible;
-  private boolean buttonClicked;
   private boolean textVisible;
+private boolean buttonClicked;
+  private boolean pbVisible;
+
 
   /**
    * Operation called during VIEW creation in {@link GenericActivity#onResume(Class, Object)}
@@ -89,15 +93,23 @@ public class HelloPresenter extends GenericPresenter
   // View To Presenter /////////////////////////////////////////////////////////////
 
   @Override
-  public void onButtonClicked() {
-    Log.d(TAG, "calling onButtonClicked()");
+  public void onButtonSayClicked() {
+    Log.d(TAG, "calling onButtonSayClicked()");
     if(isViewRunning()) {
-      getModel().onChangeMsgByBtnClicked();
+      //getModel().onChangeMsgByBtnClicked();
+      getView().showPB();
+      pbVisible=true;
       getView().setText(getModel().getText());
+      pbVisible=false;
       textVisible = true;
       buttonClicked = true;
     }
     checkTextVisibility();
+  }
+  public void onButtonGoToClicked() {
+    Log.d(TAG, "calling onButtonGoToClicked()");
+
+
   }
 
 
@@ -112,6 +124,8 @@ public class HelloPresenter extends GenericPresenter
     }
     checkToolbarVisibility();
     checkTextVisibility();
+    checkPBVisibility();
+
   }
 
   @Override
@@ -122,6 +136,11 @@ public class HelloPresenter extends GenericPresenter
   @Override
   public void setTextVisibility(boolean visible) {
     textVisible = visible;
+  }
+
+  @Override
+  public void setPBVisibility(boolean visible) {
+
   }
 
 
@@ -150,6 +169,11 @@ public class HelloPresenter extends GenericPresenter
     return textVisible;
   }
 
+  @Override
+  public boolean isPBVisible() {
+    return pbVisible;
+  }
+
 
   ///////////////////////////////////////////////////////////////////////////////////
 
@@ -171,6 +195,17 @@ public class HelloPresenter extends GenericPresenter
         getView().showText();
       }
     }
+  }
+  private void checkPBVisibility(){
+    Log.d(TAG, "calling checkPBVisibility()");
+    if(isViewRunning()) {
+      if(!pbVisible) {
+        getView().hidePB();
+      } else {
+        getView().showPB();
+      }
+    }
+
   }
 
 }

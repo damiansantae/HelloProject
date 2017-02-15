@@ -17,9 +17,9 @@ public class App extends Application implements Mediator, Navigator {
   @Override
   public void onCreate() {
     super.onCreate();
-    toDummyState = new DummyState();
-    toDummyState.toolbarVisibility = false;
-    toDummyState.textVisibility = false;
+    toHelloState = new HelloState();
+    toHelloState.toolbarVisibility = false;
+    toHelloState.textVisibility = false;
   }
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -39,6 +39,7 @@ public class App extends Application implements Mediator, Navigator {
     if(toHelloState != null) {
       presenter.setToolbarVisibility(toHelloState.toolbarVisibility);
       presenter.setTextVisibility(toHelloState.textVisibility);
+      presenter.setPBVisibility (toHelloState.pbVisibility);
     }
     presenter.onScreenStarted();
   }
@@ -61,17 +62,23 @@ public class App extends Application implements Mediator, Navigator {
 
   }
 
+
+
   ///////////////////////////////////////////////////////////////////////////////////
   // State /////////////////////////////////////////////////////////////////////////
 
-  private class DummyState {
+  public class DummyState {
     boolean toolbarVisibility;
     boolean textVisibility;
   }
 
-  private class HelloState {
+  public class HelloState {
     boolean toolbarVisibility;
     boolean textVisibility;
+    boolean  pbVisibility;
+
+
   }
+
 
 }

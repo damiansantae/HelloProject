@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import es.ulpgc.eite.clean.mvp.GenericActivity;
@@ -14,24 +15,36 @@ public class HelloView
     implements Hello.PresenterToView {
 
   private Toolbar toolbar;
-  private Button button;
+  private Button buttonSay;
+  private Button buttonGoTo;
   private TextView text;
+  private ProgressBar bar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_hello);
 
+    bar= (ProgressBar) findViewById(R.id.progressBar);
+
     text = (TextView) findViewById(R.id.text);
 
     toolbar = (Toolbar) findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
 
-    button = (Button) findViewById(R.id.button);
-    button.setOnClickListener(new View.OnClickListener() {
+    buttonSay = (Button) findViewById(R.id.button1);
+    buttonSay.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View view) {
-        getPresenter().onButtonClicked();
+        getPresenter().onButtonSayClicked();
+      }
+    });
+
+    buttonGoTo = (Button) findViewById(R.id.button2);
+    buttonGoTo.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View view) {
+        getPresenter().onButtonGoToClicked();
       }
     });
   }
@@ -56,7 +69,7 @@ public class HelloView
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
     // Handle action bar item clicks here. The action bar will
-    // automatically handle clicks on the Home/Up button, so long
+    // automatically handle clicks on the Home/Up buttonSay, so long
     // as you specify a parent activity in AndroidManifest.xml.
     int id = item.getItemId();
 
@@ -100,6 +113,20 @@ public class HelloView
 
   @Override
   public void setLabel(String txt) {
-    button.setText(txt);
+    buttonSay.setText(txt);
+  }
+
+  @Override
+  public void showPB(){
+    bar.setVisibility(View.VISIBLE);
+    for (int i=0; i<1000000000; i++);
+    hidePB();
+  }
+
+  @Override
+  public void hidePB() {
+    bar.setVisibility(View.GONE);
+
+
   }
 }

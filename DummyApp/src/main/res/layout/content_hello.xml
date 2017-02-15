@@ -24,19 +24,21 @@
        >
 
         <Button
-        android:text="Button"
+            android:id="@+id/button1"
+            android:text="@string/button_label"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:layout_weight="0.5" />
+
+        <Button
+        android:text="@string/button_label2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/button2"
             android:layout_weight="0.5" />
 
 
-        <Button
-            android:id="@+id/button1"
-            android:text="@string/button_label"
-            android:layout_height="match_parent"
-            android:layout_width="match_parent"
-            android:layout_weight="0.5" />
+
 
     </LinearLayout>
 
