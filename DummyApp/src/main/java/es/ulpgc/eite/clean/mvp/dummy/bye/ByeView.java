@@ -1,18 +1,17 @@
-package es.ulpgc.eite.clean.mvp.dummy.hello;
+package es.ulpgc.eite.clean.mvp.dummy.bye;
 
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import es.ulpgc.eite.clean.mvp.GenericActivity;
 import es.ulpgc.eite.clean.mvp.dummy.R;
 
-public class HelloView
-    extends GenericActivity<Hello.PresenterToView, Hello.ViewToPresenter, HelloPresenter>
-    implements Hello.PresenterToView {
+public class ByeView
+    extends GenericActivity<Bye.PresenterToView, Bye.ViewToPresenter, ByePresenter>
+    implements Bye.PresenterToView {
 
   private Toolbar toolbar;
   private Button buttonSay;
@@ -23,7 +22,7 @@ public class HelloView
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_hello);
+    setContentView(R.layout.activity_bye);
 
     //bar= (ProgressBar) findViewById(R.id.progressBar);
 
@@ -55,14 +54,14 @@ public class HelloView
    */
   @Override
   protected void onResume() {
-    super.onResume(HelloPresenter.class, this);
+    super.onResume(ByePresenter.class, this);
   }
 
   /*
   @Override
   public boolean onCreateOptionsMenu(Menu menu) {
     // Inflate the menu; this adds items to the action bar if it is present.
-    getMenuInflater().inflate(R.menu.menu_hello, menu);
+    getMenuInflater().inflate(R.menu.menu_bye, menu);
     return true;
   }
 

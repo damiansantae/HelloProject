@@ -1,8 +1,11 @@
 <resources>
-    <string name="app_name">Dummy</string>
+    <string name="app_name">Hello</string>
+    <string name="title_activity_bye">Hello</string>
     <string name="dummy_screen_title">Dummy</string>
     <string name="action_settings">Settings</string>
     <string name="screen_text">Text</string>
-    <string name="button_label">Say Hello</string>
-    <string name="button_label2">Go To Bye</string>
+    <string name="button_label_SH">Say Hello</string>
+    <string name="button_label_GTB">Go To Bye</string>
+    <string name="button_label_SB">Say Bye</string>
+    <string name="button_label_GTH">Go To Hello</string>
 </resources>

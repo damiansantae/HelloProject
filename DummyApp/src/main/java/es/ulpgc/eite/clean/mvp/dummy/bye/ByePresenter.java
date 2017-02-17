@@ -1,4 +1,4 @@
-package es.ulpgc.eite.clean.mvp.dummy.hello;
+package es.ulpgc.eite.clean.mvp.dummy.bye;
 
 
 import android.content.Context;
@@ -7,13 +7,12 @@ import android.util.Log;
 import es.ulpgc.eite.clean.mvp.ContextView;
 import es.ulpgc.eite.clean.mvp.GenericActivity;
 import es.ulpgc.eite.clean.mvp.GenericPresenter;
-import es.ulpgc.eite.clean.mvp.dummy.app.App;
 import es.ulpgc.eite.clean.mvp.dummy.app.Mediator;
 
 
-public class HelloPresenter extends GenericPresenter
-    <Hello.PresenterToView, Hello.PresenterToModel, Hello.ModelToPresenter, es.ulpgc.eite.clean.mvp.dummy.hello.HelloModel>
-    implements Hello.ViewToPresenter, Hello.ModelToPresenter, Hello.HelloTo, Hello.ToHello {
+public class ByePresenter extends GenericPresenter
+    <Bye.PresenterToView, Bye.PresenterToModel, Bye.ModelToPresenter, ByeModel>
+    implements Bye.ViewToPresenter, Bye.ModelToPresenter, Bye.ByeTo, Bye.ToBye {
 
 
   private boolean toolbarVisible;
@@ -31,14 +30,14 @@ private boolean buttonClicked;
    * @param view The current VIEW instance
    */
   @Override
-  public void onCreate(Hello.PresenterToView view) {
-    super.onCreate(HelloModel.class, this);
+  public void onCreate(Bye.PresenterToView view) {
+    super.onCreate(ByeModel.class, this);
     setView(view);
     Log.d(TAG, "calling onCreate()");
 
-    Log.d(TAG, "calling startingHelloScreen()");
+    Log.d(TAG, "calling startingByeScreen()");
     Mediator app = (Mediator) getView().getApplication();
-    app.startingHelloScreen(this);
+    app.startingByeScreen(this);
   }
 
   /**
@@ -49,7 +48,7 @@ private boolean buttonClicked;
    * @param view The current VIEW instance
    */
   @Override
-  public void onResume(Hello.PresenterToView view) {
+  public void onResume(Bye.PresenterToView view) {
     setView(view);
     Log.d(TAG, "calling onResume()");
 

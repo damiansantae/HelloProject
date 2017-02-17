@@ -4,7 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/content_hello"
+    android:id="@+id/content_bye"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,9 +13,9 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="es.ulpgc.eite.clean.mvp.dummy.hello.HelloView"
-    tools:showIn="@layout/activity_hello"
-    android:layout_centerHorizontal="true"
+    tools:context="es.ulpgc.eite.clean.mvp.dummy.bye.ByeView"
+    tools:showIn="@layout/activity_bye"
+
     android:weightSum="1">
 
     <LinearLayout
@@ -26,13 +26,13 @@
 
         <Button
             android:id="@+id/button1"
-            android:text="@string/button_label_SH"
+            android:text="@string/button_label_SB"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             android:layout_weight="0.5" />
 
         <Button
-        android:text="@string/button_label_GTB"
+        android:text="@string/button_label_GTH"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/button2"
@@ -50,6 +50,7 @@
         android:layout_height="wrap_content"
         android:text="@string/screen_text"
         android:textAlignment="center"
+        android:layout_centerHorizontal="true"
 
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:id="@+id/text"/>

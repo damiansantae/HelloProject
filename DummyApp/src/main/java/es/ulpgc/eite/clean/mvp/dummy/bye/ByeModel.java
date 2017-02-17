@@ -1,13 +1,13 @@
-package es.ulpgc.eite.clean.mvp.dummy.dummy;
+package es.ulpgc.eite.clean.mvp.dummy.bye;
 
 import es.ulpgc.eite.clean.mvp.GenericModel;
 
 
-public class DummyModel extends GenericModel<Dummy.ModelToPresenter>
-    implements Dummy.PresenterToModel {
+public class ByeModel extends GenericModel<Bye.ModelToPresenter>
+    implements Bye.PresenterToModel {
 
-  private String dummyText;
-  private String dummyLabel;
+  private String byeText;
+  private String byeLabel;
   private int numOfTimes;
   private String msgText;
 
@@ -18,11 +18,11 @@ public class DummyModel extends GenericModel<Dummy.ModelToPresenter>
    * @param presenter Presenter interface
    */
   @Override
-  public void onCreate(Dummy.ModelToPresenter presenter) {
+  public void onCreate(Bye.ModelToPresenter presenter) {
     super.onCreate(presenter);
 
-    dummyLabel = "Click Me!";
-    dummyText = "Bye World!";
+    byeLabel = "Say Bye";
+    byeText = "Bye World!";
   }
 
   /**
@@ -42,7 +42,7 @@ public class DummyModel extends GenericModel<Dummy.ModelToPresenter>
 
   @Override
   public void onChangeMsgByBtnClicked() {
-    msgText = dummyText;
+    msgText = byeText;
     if(numOfTimes > 0) {
       msgText += ", " + numOfTimes + " times";
     }
@@ -51,11 +51,11 @@ public class DummyModel extends GenericModel<Dummy.ModelToPresenter>
 
   @Override
   public String getText() {
-    return msgText;
+    return byeText;
   }
 
   @Override
   public String getLabel() {
-    return dummyLabel;
+    return byeLabel;
   }
 }

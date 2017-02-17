@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="es.ulpgc.eite.clean.mvp.dummy.dummy.DummyView">
+    tools:context="es.ulpgc.eite.clean.mvp.dummy.hello.HelloView">
 
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
@@ -22,14 +22,8 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_dummy"/>
+    <include layout="@layout/content_hello"/>
 
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/button_label_SH"
-        android:layout_gravity="bottom|right"
-        android:layout_margin="@dimen/fab_margin"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

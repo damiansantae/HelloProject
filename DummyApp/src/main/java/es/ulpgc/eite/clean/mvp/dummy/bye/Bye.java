@@ -1,4 +1,4 @@
-package es.ulpgc.eite.clean.mvp.dummy.hello;
+package es.ulpgc.eite.clean.mvp.dummy.bye;
 
 import android.content.Context;
 
@@ -10,20 +10,20 @@ import es.ulpgc.eite.clean.mvp.Presenter;
  * Created by Luis on 12/11/16.
  */
 
-public interface Hello {
+public interface Bye {
 
 
   ///////////////////////////////////////////////////////////////////////////////////
   // State /////////////////////////////////////////////////////////////////////////
 
-  interface ToHello {
+  interface ToBye {
     void onScreenStarted();
     void setToolbarVisibility(boolean visible);
     void setTextVisibility(boolean visible);
     //void setPBVisibility(boolean visible);
   }
 
-  interface HelloTo {
+  interface ByeTo {
     Context getManagedContext();
     void destroyView();
     boolean isToolbarVisible();
