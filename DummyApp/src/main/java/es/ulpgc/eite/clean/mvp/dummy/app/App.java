@@ -5,9 +5,11 @@ import android.content.Context;
 import android.content.Intent;
 
 import es.ulpgc.eite.clean.mvp.dummy.bye.Bye;
+import es.ulpgc.eite.clean.mvp.dummy.bye.ByeView;
 import es.ulpgc.eite.clean.mvp.dummy.dummy.Dummy;
 import es.ulpgc.eite.clean.mvp.dummy.dummy.DummyView;
 import es.ulpgc.eite.clean.mvp.dummy.hello.Hello;
+import es.ulpgc.eite.clean.mvp.dummy.hello.HelloView;
 
 
 public class App extends Application implements Mediator, Navigator {
@@ -60,18 +62,32 @@ public class App extends Application implements Mediator, Navigator {
 
 
   @Override
-  public void goToNextScreen(Dummy.DummyTo presenter) {
-    dummyToState = new DummyState();
-    dummyToState.toolbarVisibility = presenter.isToolbarVisible();
-    dummyToState.textVisibility = presenter.isTextVisible();
+  public void goToByeScreen(Hello.HelloTo presenter) {
+    helloToState = new HelloState();
+    helloToState.toolbarVisibility = presenter.isToolbarVisible();
+    helloToState.textVisibility = presenter.isTextVisible();
 
     Context view = presenter.getManagedContext();
     if (view != null) {
-      view.startActivity(new Intent(view, DummyView.class));
+      view.startActivity(new Intent(view, ByeView.class));
       presenter.destroyView();
     }
 
   }
+  @Override
+  public void goToHelloScreen(Bye.ByeTo presenter) {
+    byeToState = new ByeState();
+    byeToState.toolbarVisibility = presenter.isToolbarVisible();
+    byeToState.textVisibility = presenter.isTextVisible();
+
+    Context view = presenter.getManagedContext();
+    if (view != null) {
+      view.startActivity(new Intent(view, HelloView.class));
+      presenter.destroyView();
+    }
+
+  }
+
 
 
 

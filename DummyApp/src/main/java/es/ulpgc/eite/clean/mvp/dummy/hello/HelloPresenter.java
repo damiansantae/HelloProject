@@ -3,12 +3,11 @@ package es.ulpgc.eite.clean.mvp.dummy.hello;
 
 import android.content.Context;
 import android.util.Log;
-
 import es.ulpgc.eite.clean.mvp.ContextView;
 import es.ulpgc.eite.clean.mvp.GenericActivity;
 import es.ulpgc.eite.clean.mvp.GenericPresenter;
-import es.ulpgc.eite.clean.mvp.dummy.app.App;
 import es.ulpgc.eite.clean.mvp.dummy.app.Mediator;
+import es.ulpgc.eite.clean.mvp.dummy.app.Navigator;
 
 
 public class HelloPresenter extends GenericPresenter
@@ -106,8 +105,16 @@ private boolean buttonClicked;
     }
     checkTextVisibility();
   }
-  public void onButtonGoToClicked() {
+
+
+
+    public void onButtonGoToClicked() {
     Log.d(TAG, "calling onButtonGoToClicked()");
+        Navigator app = (Navigator) getView().getApplication();
+        app.goToByeScreen(this);
+
+
+
 
 
   }

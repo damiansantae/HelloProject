@@ -8,6 +8,7 @@ import es.ulpgc.eite.clean.mvp.ContextView;
 import es.ulpgc.eite.clean.mvp.GenericActivity;
 import es.ulpgc.eite.clean.mvp.GenericPresenter;
 import es.ulpgc.eite.clean.mvp.dummy.app.Mediator;
+import es.ulpgc.eite.clean.mvp.dummy.app.Navigator;
 
 
 public class ByePresenter extends GenericPresenter
@@ -107,6 +108,8 @@ private boolean buttonClicked;
   }
   public void onButtonGoToClicked() {
     Log.d(TAG, "calling onButtonGoToClicked()");
+    Navigator app = (Navigator) getView().getApplication();
+    app.goToHelloScreen(this);
 
 
   }
