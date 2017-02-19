@@ -123,6 +123,7 @@ private boolean buttonClicked;
     Log.d(TAG, "calling onScreenStarted()");
     if(isViewRunning()) {
       getView().setLabel(getModel().getLabel());
+      getView().setLabel2(getModel().getLabel2());
     }
     checkToolbarVisibility();
     checkTextVisibility();

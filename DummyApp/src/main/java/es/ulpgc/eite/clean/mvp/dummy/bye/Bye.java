@@ -52,6 +52,7 @@ public interface Bye {
     void showText();
     void setText(String txt);
     void setLabel(String txt);
+    void setLabel2(String txt);
 //    void showPB();
 //    void hidePB();
   }
@@ -63,6 +64,7 @@ public interface Bye {
     void onChangeMsgByBtnClicked();
     String getText();
     String getLabel();
+    String getLabel2();
   }
 
   /**

@@ -8,8 +8,10 @@ public class ByeModel extends GenericModel<Bye.ModelToPresenter>
 
   private String byeText;
   private String byeLabel;
+  private String byeLabel2;
   private int numOfTimes;
   private String msgText;
+
 
   /**
    * Method that recovers a reference to the PRESENTER
@@ -22,6 +24,7 @@ public class ByeModel extends GenericModel<Bye.ModelToPresenter>
     super.onCreate(presenter);
 
     byeLabel = "Say Bye";
+    byeLabel2 = "Back to Hello";
     byeText = "Bye World!";
   }
 
@@ -58,4 +61,10 @@ public class ByeModel extends GenericModel<Bye.ModelToPresenter>
   public String getLabel() {
     return byeLabel;
   }
+
+  @Override
+  public String getLabel2() {
+    return byeLabel2;
+  }
 }
+

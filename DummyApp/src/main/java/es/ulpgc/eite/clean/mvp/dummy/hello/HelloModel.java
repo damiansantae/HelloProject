@@ -8,6 +8,7 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
 
   private String helloText;
   private String helloLabel;
+  private String helloLabel2;
   private int numOfTimes;
   private String msgText;
 
@@ -22,6 +23,7 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
     super.onCreate(presenter);
 
     helloLabel = "Say Hello";
+    helloLabel2="Go to Bye";
     helloText = "Hello World!";
   }
 
@@ -57,5 +59,11 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
   @Override
   public String getLabel() {
     return helloLabel;
+  }
+
+
+  @Override
+  public String getLabel2() {
+    return helloLabel2;
   }
 }

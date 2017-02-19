@@ -54,6 +54,7 @@ private boolean buttonClicked;
 
     if(configurationChangeOccurred()) {
       getView().setLabel(getModel().getLabel());
+      getView().setLabel2(getModel().getLabel2());
 
       checkToolbarVisibility();
       checkTextVisibility();

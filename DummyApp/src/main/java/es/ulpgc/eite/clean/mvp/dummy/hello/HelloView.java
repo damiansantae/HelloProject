@@ -116,6 +116,10 @@ public class HelloView
     buttonSay.setText(txt);
   }
 
+  @Override
+  public void setLabel2(String txt) {
+    buttonGoTo.setText(txt);
+  }
  /* @Override
   public void showPB(){
     bar.setVisibility(View.VISIBLE);
