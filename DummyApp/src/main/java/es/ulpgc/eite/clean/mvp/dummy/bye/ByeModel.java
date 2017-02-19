@@ -7,10 +7,11 @@ public class ByeModel extends GenericModel<Bye.ModelToPresenter>
     implements Bye.PresenterToModel {
 
   private String byeText;
+  private String helloMsg;
   private String byeLabel;
   private String byeLabel2;
-  private int numOfTimes;
-  private String msgText;
+  //private int numOfTimes;
+ // private String msgText;
 
 
   /**
@@ -26,6 +27,7 @@ public class ByeModel extends GenericModel<Bye.ModelToPresenter>
     byeLabel = "Say Bye";
     byeLabel2 = "Back to Hello";
     byeText = "Bye World!";
+    helloMsg ="Hello World!";
   }
 
   /**
@@ -45,11 +47,11 @@ public class ByeModel extends GenericModel<Bye.ModelToPresenter>
 
   @Override
   public void onChangeMsgByBtnClicked() {
-    msgText = byeText;
-    if(numOfTimes > 0) {
-      msgText += ", " + numOfTimes + " times";
-    }
-    numOfTimes++;
+//    msgText = byeText;
+//    if(numOfTimes > 0) {
+//      msgText += ", " + numOfTimes + " times";
+//    }
+//    numOfTimes++;
   }
 
   @Override
@@ -65,6 +67,11 @@ public class ByeModel extends GenericModel<Bye.ModelToPresenter>
   @Override
   public String getLabel2() {
     return byeLabel2;
+  }
+
+  @Override
+  public String getText1() {
+    return helloMsg;
   }
 }
 

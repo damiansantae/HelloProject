@@ -19,6 +19,7 @@ public class ByePresenter extends GenericPresenter
   private boolean toolbarVisible;
   private boolean textVisible;
 private boolean buttonClicked;
+    private boolean buttonHelloClicked;
  // private boolean pbVisible;
 
 
@@ -124,6 +125,8 @@ private boolean buttonClicked;
     if(isViewRunning()) {
       getView().setLabel(getModel().getLabel());
       getView().setLabel2(getModel().getLabel2());
+        checkBtnClick();
+
     }
     checkToolbarVisibility();
     checkTextVisibility();
@@ -131,7 +134,9 @@ private boolean buttonClicked;
 
   }
 
-  @Override
+
+
+    @Override
   public void setToolbarVisibility(boolean visible) {
     toolbarVisible = visible;
   }
@@ -140,6 +145,13 @@ private boolean buttonClicked;
   public void setTextVisibility(boolean visible) {
     textVisible = visible;
   }
+
+
+    @Override
+    public void setBtnHelloClicked(boolean btnHelloClicked) {
+        buttonHelloClicked=btnHelloClicked;
+
+    }
 /*
   @Override
   public void setPBVisibility(boolean visible) {
@@ -172,6 +184,17 @@ private boolean buttonClicked;
     return textVisible;
   }
 
+  @Override
+  public boolean isBtnHelloClicked() {
+    return buttonHelloClicked;
+  }
+
+    @Override
+    public boolean isBtnByeClicked(){
+        return buttonClicked;
+    }
+
+
 /*  @Override
   public boolean isPBVisible() {
     return pbVisible;
@@ -179,6 +202,16 @@ private boolean buttonClicked;
 
 
   ///////////////////////////////////////////////////////////////////////////////////
+
+    private void checkBtnClick() {
+        Log.d(TAG, "calling checkBtnClick");
+        if(isViewRunning()) {
+            if (isBtnHelloClicked()) {
+                getView().setText(getModel().getText1());
+            }
+        }
+
+    }
 
   private void checkToolbarVisibility(){
     Log.d(TAG, "calling checkToolbarVisibility()");

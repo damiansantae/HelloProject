@@ -20,6 +20,8 @@ public interface Hello {
     void onScreenStarted();
     void setToolbarVisibility(boolean visible);
     void setTextVisibility(boolean visible);
+
+    void setBtnClicked(boolean btnSayClicked);
     //void setPBVisibility(boolean visible);
   }
 
@@ -28,6 +30,7 @@ public interface Hello {
     void destroyView();
     boolean isToolbarVisible();
     boolean isTextVisible();
+    boolean isBtnSayClicked();
 //    boolean isPBVisible();
   }
 
@@ -63,6 +66,7 @@ public interface Hello {
   interface PresenterToModel extends Model<ModelToPresenter> {
     void onChangeMsgByBtnClicked();
     String getText();
+    String getTextBye();
     String getLabel();
     String getLabel2();
   }

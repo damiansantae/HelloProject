@@ -20,6 +20,7 @@ public interface Bye {
     void onScreenStarted();
     void setToolbarVisibility(boolean visible);
     void setTextVisibility(boolean visible);
+    void setBtnHelloClicked(boolean btnSayClicked);
     //void setPBVisibility(boolean visible);
   }
 
@@ -28,6 +29,8 @@ public interface Bye {
     void destroyView();
     boolean isToolbarVisible();
     boolean isTextVisible();
+    boolean isBtnHelloClicked();
+    boolean isBtnByeClicked();
 //    boolean isPBVisible();
   }
 
@@ -65,6 +68,7 @@ public interface Bye {
     String getText();
     String getLabel();
     String getLabel2();
+    String getText1();
   }
 
   /**

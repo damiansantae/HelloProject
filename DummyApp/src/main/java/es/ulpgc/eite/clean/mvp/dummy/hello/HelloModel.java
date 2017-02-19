@@ -7,6 +7,7 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
     implements Hello.PresenterToModel {
 
   private String helloText;
+    private String byeLabel;
   private String helloLabel;
   private String helloLabel2;
   private int numOfTimes;
@@ -25,6 +26,7 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
     helloLabel = "Say Hello";
     helloLabel2="Go to Bye";
     helloText = "Hello World!";
+      byeLabel="Bye World";
   }
 
   /**
@@ -55,6 +57,11 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
   public String getText() {
     return helloText;
   }
+    @Override
+    public String getTextBye() {
+        return byeLabel;
+    }
+
 
   @Override
   public String getLabel() {
@@ -67,3 +74,4 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
     return helloLabel2;
   }
 }
+

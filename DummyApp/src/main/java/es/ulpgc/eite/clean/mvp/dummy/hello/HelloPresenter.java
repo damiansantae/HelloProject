@@ -17,7 +17,8 @@ public class HelloPresenter extends GenericPresenter
 
   private boolean toolbarVisible;
   private boolean textVisible;
-private boolean buttonClicked;
+private boolean buttonByeClicked;
+    private boolean buttonHelloClicked;
  // private boolean pbVisible;
 
 
@@ -59,7 +60,7 @@ private boolean buttonClicked;
       checkToolbarVisibility();
       checkTextVisibility();
 
-      if (buttonClicked) {
+     if (buttonHelloClicked) {
         getView().setText(getModel().getText());
       }
     }
@@ -102,7 +103,7 @@ private boolean buttonClicked;
       getView().setText(getModel().getText());
      // pbVisible=false;
       textVisible = true;
-      buttonClicked = true;
+      buttonHelloClicked = true;
     }
     checkTextVisibility();
   }
@@ -113,9 +114,6 @@ private boolean buttonClicked;
     Log.d(TAG, "calling onButtonGoToClicked()");
         Navigator app = (Navigator) getView().getApplication();
         app.goToByeScreen(this);
-
-
-
 
 
   }
@@ -129,11 +127,11 @@ private boolean buttonClicked;
     Log.d(TAG, "calling onScreenStarted()");
     if(isViewRunning()) {
       getView().setLabel(getModel().getLabel());
+        checkBtnByeClick();
     }
     checkToolbarVisibility();
     checkTextVisibility();
     //checkPBVisibility();
-
   }
 
   @Override
@@ -145,6 +143,11 @@ private boolean buttonClicked;
   public void setTextVisibility(boolean visible) {
     textVisible = visible;
   }
+
+    @Override
+    public void setBtnClicked(boolean btnSayClicked) {
+        buttonByeClicked =btnSayClicked;
+    }
 /*
   @Override
   public void setPBVisibility(boolean visible) {
@@ -177,6 +180,14 @@ private boolean buttonClicked;
     return textVisible;
   }
 
+    @Override
+    public boolean isBtnSayClicked() {
+        return buttonHelloClicked;
+    }
+    public boolean isBtnByeClicked(){
+        return buttonByeClicked;
+    }
+
 /*  @Override
   public boolean isPBVisible() {
     return pbVisible;
@@ -204,6 +215,17 @@ private boolean buttonClicked;
       }
     }
   }
+    private void checkBtnByeClick() {
+        Log.d(TAG, "calling checkBtnByeClick");
+        if(isViewRunning()) {
+            if (isBtnByeClicked()) {
+                Log.d(TAG, "inserting bye text");
+                getView().setText(getModel().getTextBye());
+                textVisible = true;
+            }
+        }
+
+    }
   /*private void checkPBVisibility(){
     Log.d(TAG, "calling checkPBVisibility()");
     if(isViewRunning()) {
