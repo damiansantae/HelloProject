@@ -57,6 +57,7 @@ private boolean buttonByeClicked;
       getView().setLabel(getModel().getLabel());
       getView().setLabel2(getModel().getLabel2());
 
+    checkBtnByeClick();
       checkToolbarVisibility();
       checkTextVisibility();
 
