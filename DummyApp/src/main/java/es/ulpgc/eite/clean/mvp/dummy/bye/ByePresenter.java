@@ -58,7 +58,7 @@ private boolean buttonClicked;
       getView().setLabel(getModel().getLabel());
         getView().setLabel2((getModel().getLabel2()));
 
-      checkBtnClick();
+      checkHelloBtnClick();
       checkToolbarVisibility();
       checkTextVisibility();
 
@@ -111,6 +111,8 @@ private boolean buttonClicked;
   }
   public void onButtonGoToClicked() {
     Log.d(TAG, "calling onButtonGoToClicked()");
+      if(!isBtnByeClicked())                //Si no se ha pulsado el boton Say se oculta el texto para pasar a la otra activity
+          textVisible=false;
     Navigator app = (Navigator) getView().getApplication();
     app.goToHelloScreen(this);
 
@@ -127,7 +129,8 @@ private boolean buttonClicked;
     if(isViewRunning()) {
       getView().setLabel(getModel().getLabel());
       getView().setLabel2(getModel().getLabel2());
-        checkBtnClick();
+
+        checkHelloBtnClick();           //Se comprueba el estado de la activity anterior (Si se habia pulsado o no el boton Say)
 
     }
     checkToolbarVisibility();
@@ -205,17 +208,30 @@ private boolean buttonClicked;
 
   ///////////////////////////////////////////////////////////////////////////////////
 
-    private void checkBtnClick() {
-        Log.d(TAG, "calling checkBtnClick");
+    private void checkHelloBtnClick() {
+        Log.d(TAG, "calling checkHelloBtnClick");
         if(isViewRunning()) {
             if (isBtnHelloClicked()) {
                 getView().setText(getModel().getText1());
+            }else{
+                textVisible=false;
+            }
+        }
+
+    }
+    private void checkBtnClick() {
+        Log.d(TAG, "calling checkHelloBtnClick");
+        if(isViewRunning()) {
+            if (isBtnByeClicked()) {
+                getView().setText(getModel().getText());
             }
         }
 
     }
 
-  private void checkToolbarVisibility(){
+
+
+    private void checkToolbarVisibility(){
     Log.d(TAG, "calling checkToolbarVisibility()");
     if(isViewRunning()) {
       if (!toolbarVisible) {

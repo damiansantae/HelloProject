@@ -113,6 +113,10 @@ private boolean buttonByeClicked;
 
     public void onButtonGoToClicked() {
     Log.d(TAG, "calling onButtonGoToClicked()");
+
+
+      if(!isBtnSayClicked())       //Si no se ha pulsado el boton Say se oculta el texto para pasar a la otra activity
+        textVisible=false;
         Navigator app = (Navigator) getView().getApplication();
         app.goToByeScreen(this);
 
