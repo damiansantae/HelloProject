@@ -1,9 +1,8 @@
-package es.ulpgc.eite.clean.mvp.dummy.bye;
+package es.ulpgc.eite.clean.mvp.dummy.hello;
 
 
 import android.content.Context;
 import android.util.Log;
-
 import es.ulpgc.eite.clean.mvp.ContextView;
 import es.ulpgc.eite.clean.mvp.GenericActivity;
 import es.ulpgc.eite.clean.mvp.GenericPresenter;
@@ -11,16 +10,16 @@ import es.ulpgc.eite.clean.mvp.dummy.app.Mediator;
 import es.ulpgc.eite.clean.mvp.dummy.app.Navigator;
 
 
-public class ByePresenter extends GenericPresenter
-    <Bye.PresenterToView, Bye.PresenterToModel, Bye.ModelToPresenter, ByeModel>
-    implements Bye.ViewToPresenter, Bye.ModelToPresenter, Bye.ByeTo, Bye.ToBye {
+public class HelloPresenter extends GenericPresenter
+    <Hello.PresenterToView, Hello.PresenterToModel, Hello.ModelToPresenter, es.ulpgc.eite.clean.mvp.dummy.hello.HelloModel>
+    implements Hello.ViewToPresenter, Hello.ModelToPresenter, Hello.HelloToBye, Hello.ToHello {
 
 
   private boolean toolbarVisible;
   private boolean textVisible;
-private boolean buttonClicked;
+private boolean buttonByeClicked;
     private boolean buttonHelloClicked;
- // private boolean pbVisible;
+ private boolean pbVisible;
 
 
   /**
@@ -32,14 +31,14 @@ private boolean buttonClicked;
    * @param view The current VIEW instance
    */
   @Override
-  public void onCreate(Bye.PresenterToView view) {
-    super.onCreate(ByeModel.class, this);
+  public void onCreate(Hello.PresenterToView view) {
+    super.onCreate(HelloModel.class, this);
     setView(view);
     Log.d(TAG, "calling onCreate()");
 
-    Log.d(TAG, "calling startingByeScreen()");
+    Log.d(TAG, "calling startingHelloScreen()");
     Mediator app = (Mediator) getView().getApplication();
-    app.startingByeScreen(this);
+    app.startingHelloScreen(this);
   }
 
   /**
@@ -50,19 +49,21 @@ private boolean buttonClicked;
    * @param view The current VIEW instance
    */
   @Override
-  public void onResume(Bye.PresenterToView view) {
+  public void onResume(Hello.PresenterToView view) {
     setView(view);
     Log.d(TAG, "calling onResume()");
 
     if(configurationChangeOccurred()) {
       getView().setLabel(getModel().getLabel());
-        getView().setLabel2((getModel().getLabel2()));
+      getView().setLabel2(getModel().getLabel2());
 
-      checkHelloBtnClick();
+    checkBtnByeClick();
       checkToolbarVisibility();
       checkTextVisibility();
+        checkPBVisibility();
 
-      if (buttonClicked) {
+
+     if (buttonHelloClicked) {
         getView().setText(getModel().getText());
       }
     }
@@ -100,21 +101,26 @@ private boolean buttonClicked;
     Log.d(TAG, "calling onButtonSayClicked()");
     if(isViewRunning()) {
       //getModel().onChangeMsgByBtnClicked();
-     // getView().showPB();
-     // pbVisible=true;
-      getView().setText(getModel().getText());
-     // pbVisible=false;
-      textVisible = true;
-      buttonClicked = true;
+        setBtnClicked(true);
+     getModel().startProgresBar();
+
+
+
+
     }
     checkTextVisibility();
   }
-  public void onButtonGoToClicked() {
+
+
+
+    public void onButtonGoToClicked() {
     Log.d(TAG, "calling onButtonGoToClicked()");
-      if(!isBtnByeClicked())                //Si no se ha pulsado el boton Say se oculta el texto para pasar a la otra activity
-          textVisible=false;
-    Navigator app = (Navigator) getView().getApplication();
-    app.goToHelloScreen(this);
+
+
+      if(!isBtnSayClicked())       //Si no se ha pulsado el boton Say se oculta el texto para pasar a la otra activity
+        textVisible=false;
+        Navigator app = (Navigator) getView().getApplication();
+        app.goToByeScreen(this);
 
 
   }
@@ -128,20 +134,14 @@ private boolean buttonClicked;
     Log.d(TAG, "calling onScreenStarted()");
     if(isViewRunning()) {
       getView().setLabel(getModel().getLabel());
-      getView().setLabel2(getModel().getLabel2());
-
-        checkHelloBtnClick();           //Se comprueba el estado de la activity anterior (Si se habia pulsado o no el boton Say)
-
+        checkBtnByeClick();
     }
     checkToolbarVisibility();
     checkTextVisibility();
-    //checkPBVisibility();
-
+    checkPBVisibility();
   }
 
-
-
-    @Override
+  @Override
   public void setToolbarVisibility(boolean visible) {
     toolbarVisible = visible;
   }
@@ -151,17 +151,15 @@ private boolean buttonClicked;
     textVisible = visible;
   }
 
-
     @Override
-    public void setBtnHelloClicked(boolean btnHelloClicked) {
-        buttonHelloClicked=btnHelloClicked;
-
+    public void setBtnClicked(boolean btnSayClicked) {
+        buttonHelloClicked =btnSayClicked;
     }
-/*
+
   @Override
   public void setPBVisibility(boolean visible) {
 
-  }*/
+  }
 
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -189,49 +187,23 @@ private boolean buttonClicked;
     return textVisible;
   }
 
-  @Override
-  public boolean isBtnHelloClicked() {
-    return buttonHelloClicked;
-  }
-
     @Override
+    public boolean isBtnSayClicked() {
+        return buttonHelloClicked;
+    }
     public boolean isBtnByeClicked(){
-        return buttonClicked;
+        return buttonByeClicked;
     }
 
-
-/*  @Override
+ @Override
   public boolean isPBVisible() {
     return pbVisible;
-  }*/
+  }
 
 
   ///////////////////////////////////////////////////////////////////////////////////
 
-    private void checkHelloBtnClick() {
-        Log.d(TAG, "calling checkHelloBtnClick");
-        if(isViewRunning()) {
-            if (isBtnHelloClicked()) {
-                getView().setText(getModel().getText1());
-            }else{
-                textVisible=false;
-            }
-        }
-
-    }
-    private void checkBtnClick() {
-        Log.d(TAG, "calling checkHelloBtnClick");
-        if(isViewRunning()) {
-            if (isBtnByeClicked()) {
-                getView().setText(getModel().getText());
-            }
-        }
-
-    }
-
-
-
-    private void checkToolbarVisibility(){
+  private void checkToolbarVisibility(){
     Log.d(TAG, "calling checkToolbarVisibility()");
     if(isViewRunning()) {
       if (!toolbarVisible) {
@@ -250,7 +222,42 @@ private boolean buttonClicked;
       }
     }
   }
-  /*private void checkPBVisibility(){
+    private void checkBtnByeClick() {
+        Log.d(TAG, "calling checkBtnByeClick");
+        if(isViewRunning()) {
+            if (isBtnByeClicked()) {
+                Log.d(TAG, "inserting bye text");
+                getView().setText(getModel().getTextBye());
+                textVisible = true;
+            }
+        }
+
+    }
+
+  @Override
+  public void hideProgresBar() {
+    getView().hidePB();
+      setPBVisibility(false);
+  }
+
+    @Override
+    public void showProgresBar() {
+        getView().showPB();
+        setPBVisibility(true);
+
+    }
+
+    @Override
+    public void ProgresBarEnded() {
+       hideProgresBar();
+        setPBVisibility(false);
+        getView().setText(getModel().getText());
+        setTextVisibility(true);
+        checkTextVisibility();
+
+    }
+
+    private void checkPBVisibility(){
     Log.d(TAG, "calling checkPBVisibility()");
     if(isViewRunning()) {
       if(!pbVisible) {
@@ -260,6 +267,6 @@ private boolean buttonClicked;
       }
     }
 
-  }*/
+  }
 
 }

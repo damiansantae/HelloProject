@@ -18,14 +18,14 @@ public class HelloView
   private Button buttonSay;
   private Button buttonGoTo;
   private TextView text;
-  //private ProgressBar bar;
+  private ProgressBar bar;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_hello);
 
-    //bar= (ProgressBar) findViewById(R.id.progressBar);
+    bar= (ProgressBar) findViewById(R.id.progressBar);
 
     text = (TextView) findViewById(R.id.text);
 
@@ -120,11 +120,11 @@ public class HelloView
   public void setLabel2(String txt) {
     buttonGoTo.setText(txt);
   }
- /* @Override
+
+  @Override
   public void showPB(){
     bar.setVisibility(View.VISIBLE);
-    for (int i=0; i<1000000000; i++);
-    hidePB();
+
   }
 
   @Override
@@ -132,5 +132,5 @@ public class HelloView
     bar.setVisibility(View.GONE);
 
 
-  }*/
+  }
 }

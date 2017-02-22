@@ -16,7 +16,8 @@
     tools:context="es.ulpgc.eite.clean.mvp.dummy.hello.HelloView"
     tools:showIn="@layout/activity_hello"
     android:layout_centerHorizontal="true"
-    android:weightSum="1">
+    android:weightSum="1"
+    android:gravity="center_horizontal">
 
     <LinearLayout
         android:orientation="horizontal"
@@ -39,11 +40,23 @@
             android:layout_weight="0.5" />
 
 
-
-
     </LinearLayout>
 
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10pt" />
+
+    <ProgressBar
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+         />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="10pt" />
 
     <TextView
         android:layout_width="wrap_content"

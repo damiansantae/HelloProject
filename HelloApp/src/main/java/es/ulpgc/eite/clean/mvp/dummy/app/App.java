@@ -14,8 +14,8 @@ import es.ulpgc.eite.clean.mvp.dummy.hello.HelloView;
 public class App extends Application implements Mediator, Navigator {
 
   private DummyState toDummyState, dummyToState;
-  private HelloState toHelloState, helloToState, btnSayHelloClicked;
-    private ByeState toByeState, byeToState, btnSayByeClicked;
+  private HelloState toHelloState, helloToByeState, btnSayHelloClicked;
+    private ByeState toByeState, byeToHelloState, btnSayByeClicked;
 
 
   @Override
@@ -25,6 +25,7 @@ public class App extends Application implements Mediator, Navigator {
     toHelloState.toolbarVisibility = false;
     toHelloState.textVisibility = false;
       toHelloState.btnSayClicked =false;
+      toHelloState.pbVisibility=false;
   }
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -42,25 +43,26 @@ public class App extends Application implements Mediator, Navigator {
   @Override
   public void startingHelloScreen(Hello.ToHello presenter){
     //if(toHelloState != null) {
-        if(helloToState!=null) {
-            toHelloState.toolbarVisibility = helloToState.toolbarVisibility;
-            toHelloState.textVisibility = helloToState.textVisibility;
-            toHelloState.btnSayClicked = helloToState.btnSayClicked;
+        if(helloToByeState !=null) {
+            toHelloState.toolbarVisibility = helloToByeState.toolbarVisibility;
+            toHelloState.textVisibility = helloToByeState.textVisibility;
+            toHelloState.btnSayClicked = helloToByeState.btnSayClicked;
+            toHelloState.pbVisibility =helloToByeState.pbVisibility;
+
         }
       presenter.setToolbarVisibility(toHelloState.toolbarVisibility);
       presenter.setTextVisibility(toHelloState.textVisibility);
         presenter.setBtnClicked(toHelloState.btnSayClicked);
+      presenter.setPBVisibility (toHelloState.pbVisibility);
 
-      //presenter.setPBVisibility (toHelloState.pbVisibility);
-    //}
     presenter.onScreenStarted();
   }
     @Override
     public void startingByeScreen(Bye.ToBye presenter){
         if(toByeState != null) {
-            toByeState.textVisibility=byeToState.textVisibility;
-            toByeState.toolbarVisibility=byeToState.toolbarVisibility;
-            toByeState.btnSayClicked=byeToState.btnSayClicked;
+            toByeState.textVisibility= byeToHelloState.textVisibility;
+            toByeState.toolbarVisibility= byeToHelloState.toolbarVisibility;
+            toByeState.btnSayClicked= byeToHelloState.btnSayClicked;
 
             presenter.setToolbarVisibility(toByeState.toolbarVisibility);
             presenter.setTextVisibility(toByeState.textVisibility);
@@ -75,12 +77,12 @@ public class App extends Application implements Mediator, Navigator {
 
 
   @Override
-  public void goToByeScreen(Hello.HelloTo presenter) {
-    byeToState = new ByeState();
+  public void goToByeScreen(Hello.HelloToBye presenter) {
+    byeToHelloState = new ByeState();
 
-    byeToState.toolbarVisibility = presenter.isToolbarVisible();
-    byeToState.textVisibility = presenter.isTextVisible();
-      byeToState.btnSayClicked =presenter.isBtnSayClicked();
+    byeToHelloState.toolbarVisibility = presenter.isToolbarVisible();
+    byeToHelloState.textVisibility = presenter.isTextVisible();
+      byeToHelloState.btnSayClicked =presenter.isBtnSayClicked();
 
       if (toByeState==null)
     toByeState = new ByeState();
@@ -93,13 +95,13 @@ public class App extends Application implements Mediator, Navigator {
 
   }
   @Override
-  public void goToHelloScreen(Bye.ByeTo presenter) {
-    helloToState = new HelloState();
+  public void goToHelloScreen(Bye.ByeToHello presenter) {
+    helloToByeState = new HelloState();
 
 
-    helloToState.toolbarVisibility = presenter.isToolbarVisible();
-    helloToState.textVisibility = presenter.isTextVisible();
-      helloToState.btnSayClicked=presenter.isBtnByeClicked();
+    helloToByeState.toolbarVisibility = presenter.isToolbarVisible();
+    helloToByeState.textVisibility = presenter.isTextVisible();
+      helloToByeState.btnSayClicked=presenter.isBtnByeClicked();
 
 
     Context view = presenter.getManagedContext();
@@ -125,7 +127,7 @@ public class App extends Application implements Mediator, Navigator {
     boolean toolbarVisibility;
     boolean textVisibility;
       boolean btnSayClicked;
-   // boolean  pbVisibility;
+   boolean  pbVisibility;
 
 
   }
@@ -133,7 +135,7 @@ public class App extends Application implements Mediator, Navigator {
         boolean toolbarVisibility;
         boolean textVisibility;
         boolean btnSayClicked;
-        // boolean  pbVisibility;
+        boolean  pbVisibility;
 
 
     }

@@ -1,5 +1,7 @@
 package es.ulpgc.eite.clean.mvp.dummy.hello;
 
+import android.os.CountDownTimer;
+
 import es.ulpgc.eite.clean.mvp.GenericModel;
 
 
@@ -7,7 +9,7 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
     implements Hello.PresenterToModel {
 
   private String helloText;
-    private String byeLabel;
+  private String byeLabel;
   private String helloLabel;
   private String helloLabel2;
   private int numOfTimes;
@@ -24,9 +26,9 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
     super.onCreate(presenter);
 
     helloLabel = "Say Hello";
-    helloLabel2="Go to Bye";
+    helloLabel2 = "Go to Bye";
     helloText = "Hello World!";
-      byeLabel="Bye World";
+    byeLabel = "Bye World";
   }
 
   /**
@@ -47,7 +49,7 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
   @Override
   public void onChangeMsgByBtnClicked() {
     msgText = helloText;
-    if(numOfTimes > 0) {
+    if (numOfTimes > 0) {
       msgText += ", " + numOfTimes + " times";
     }
     numOfTimes++;
@@ -57,10 +59,11 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
   public String getText() {
     return helloText;
   }
-    @Override
-    public String getTextBye() {
-        return byeLabel;
-    }
+
+  @Override
+  public String getTextBye() {
+    return byeLabel;
+  }
 
 
   @Override
@@ -73,5 +76,44 @@ public class HelloModel extends GenericModel<Hello.ModelToPresenter>
   public String getLabel2() {
     return helloLabel2;
   }
+
+  @Override
+  public void startProgresBar() {
+    new CountDownTimer(3000, 1000) {
+
+      public void onTick(long millisUntilFinished) {
+        getPresenter().showProgresBar();
+      }
+
+      public void onFinish() {
+       getPresenter().ProgresBarEnded();
+      }
+    }.start();
+  }
+
+
+
+  /*@Override
+  public void run() {
+    for (int i = 0; i < diceNum; i++) {
+      runOnUiThread(new Runnable() {
+
+        @Override
+        public void run() {
+          //do your Ui task here
+        }
+      });
+
+      try {
+
+        Thread.sleep(500);
+
+      } catch (InterruptedException e) {
+
+        e.printStackTrace();
+      }
+    }
+  }
+  */
 }
 

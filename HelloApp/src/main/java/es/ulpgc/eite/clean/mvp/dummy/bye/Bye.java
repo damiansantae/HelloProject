@@ -1,4 +1,4 @@
-package es.ulpgc.eite.clean.mvp.dummy.hello;
+package es.ulpgc.eite.clean.mvp.dummy.bye;
 
 import android.content.Context;
 
@@ -10,27 +10,27 @@ import es.ulpgc.eite.clean.mvp.Presenter;
  * Created by Luis on 12/11/16.
  */
 
-public interface Hello {
+public interface Bye {
 
 
   ///////////////////////////////////////////////////////////////////////////////////
   // State /////////////////////////////////////////////////////////////////////////
 
-  interface ToHello {
+  interface ToBye {
     void onScreenStarted();
     void setToolbarVisibility(boolean visible);
     void setTextVisibility(boolean visible);
-
-    void setBtnClicked(boolean btnSayClicked);
+    void setBtnHelloClicked(boolean btnSayClicked);
     //void setPBVisibility(boolean visible);
   }
 
-  interface HelloTo {
+  interface ByeToHello {
     Context getManagedContext();
     void destroyView();
     boolean isToolbarVisible();
     boolean isTextVisible();
-    boolean isBtnSayClicked();
+    boolean isBtnHelloClicked();
+    boolean isBtnByeClicked();
 //    boolean isPBVisible();
   }
 
@@ -66,9 +66,9 @@ public interface Hello {
   interface PresenterToModel extends Model<ModelToPresenter> {
     void onChangeMsgByBtnClicked();
     String getText();
-    String getTextBye();
     String getLabel();
     String getLabel2();
+    String getText1();
   }
 
   /**

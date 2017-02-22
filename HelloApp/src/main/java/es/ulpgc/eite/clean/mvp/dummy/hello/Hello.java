@@ -1,4 +1,4 @@
-package es.ulpgc.eite.clean.mvp.dummy.bye;
+package es.ulpgc.eite.clean.mvp.dummy.hello;
 
 import android.content.Context;
 
@@ -10,28 +10,28 @@ import es.ulpgc.eite.clean.mvp.Presenter;
  * Created by Luis on 12/11/16.
  */
 
-public interface Bye {
+public interface Hello {
 
 
   ///////////////////////////////////////////////////////////////////////////////////
   // State /////////////////////////////////////////////////////////////////////////
 
-  interface ToBye {
+  interface ToHello {
     void onScreenStarted();
     void setToolbarVisibility(boolean visible);
     void setTextVisibility(boolean visible);
-    void setBtnHelloClicked(boolean btnSayClicked);
-    //void setPBVisibility(boolean visible);
+
+    void setBtnClicked(boolean btnSayClicked);
+    void setPBVisibility(boolean visible);
   }
 
-  interface ByeTo {
+  interface HelloToBye {
     Context getManagedContext();
     void destroyView();
     boolean isToolbarVisible();
     boolean isTextVisible();
-    boolean isBtnHelloClicked();
-    boolean isBtnByeClicked();
-//    boolean isPBVisible();
+    boolean isBtnSayClicked();
+   boolean isPBVisible();
   }
 
   ///////////////////////////////////////////////////////////////////////////////////
@@ -56,8 +56,8 @@ public interface Bye {
     void setText(String txt);
     void setLabel(String txt);
     void setLabel2(String txt);
-//    void showPB();
-//    void hidePB();
+    void showPB();
+     void hidePB();
   }
 
   /**
@@ -66,9 +66,11 @@ public interface Bye {
   interface PresenterToModel extends Model<ModelToPresenter> {
     void onChangeMsgByBtnClicked();
     String getText();
+    String getTextBye();
     String getLabel();
     String getLabel2();
-    String getText1();
+
+    void startProgresBar();
   }
 
   /**
@@ -76,5 +78,10 @@ public interface Bye {
    */
   interface ModelToPresenter {
 
+    void hideProgresBar();
+
+    void showProgresBar();
+
+    void ProgresBarEnded();
   }
 }
